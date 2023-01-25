@@ -7,11 +7,7 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-    - name: building docker image
-      uses: docker-practice/actions-setup-docker@master
-      with: 
-        version: 20.10.20
-
+ 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
