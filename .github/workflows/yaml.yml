@@ -18,8 +18,8 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     - name: building image
-      run: docker build -t github-sample .
+      run: docker build -t gitactions .
     - name: taging image
-      run: docker tag github-sample:latest public.ecr.aws/s7u4d8s9/github-sample:latest
+      run: docker tag gitactions:latest 474028826408.dkr.ecr.us-east-1.amazonaws.com/gitactions:latest
     - name: pushing image
-      run: docker push public.ecr.aws/s7u4d8s9/github-sample:latest
+      run: docker push 474028826408.dkr.ecr.us-east-1.amazonaws.com/gitactions:latest
