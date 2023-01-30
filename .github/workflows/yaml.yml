@@ -23,3 +23,30 @@ jobs:
       run: docker tag gitactions:latest 474028826408.dkr.ecr.us-east-1.amazonaws.com/gitactions:latest
     - name: pushing image
       run: docker push 474028826408.dkr.ecr.us-east-1.amazonaws.com/gitactions:latest
+    - name: install-aws-cli
+      uses: unfor19/install-aws-cli-action@master
+    - run: aws --version
+      shell: bash
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with: 
+        version: v1.3.7 
+    - name: Terraform Init
+      id: init
+      run: terraform init
+      
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
+      
+    - name: Terraform apply
+      id: apply
+      run: terraform apply --auto-approve 
+    - name: Deploy Docker Image to EC2
+      uses: appleboy/ssh-action@master
+      with:
+       host: ${{ env.PUBLIC_SSH_KEY }}
+       username: ec2-user
+       key: ${{ env.PRIVATE_SSH_KEY }}
+       run:
+         sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
