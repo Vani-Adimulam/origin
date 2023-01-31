@@ -18,11 +18,11 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
     - name: building image
-      run: docker build -t gitactions .
+      run: docker build -t github-sample .
     - name: taging image
-      run: docker tag gitactions:latest 474028826408.dkr.ecr.us-east-1.amazonaws.com/gitactions:latest
+      run: docker tag github-sample:latest 474028826408.dkr.ecr.ap-south-1.amazonaws.com/github-sample:latest
     - name: pushing image
-      run: docker push 474028826408.dkr.ecr.us-east-1.amazonaws.com/gitactions:latest
+      run: docker push 474028826408.dkr.ecr.ap-south-1.amazonaws.com/github-sample:latest
     - name: install-aws-cli
       uses: unfor19/install-aws-cli-action@master
     - run: aws --version
