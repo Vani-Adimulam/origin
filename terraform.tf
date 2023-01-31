@@ -6,8 +6,6 @@ provider "aws" {
 resource "aws_instance" "web" {
     ami = "ami-00874d747dde814fa"
     instance_type = "t2.micro"
-    subnet_id = "subnet-02a5ff6f054dbfd2e"
-    security_groups = ["sg-027a92864c51623eb"]
 
     tags = {
         Name = "Aws_instance"
