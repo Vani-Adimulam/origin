@@ -13,7 +13,7 @@ jobs:
       with:
         aws-access-key-id: AKIAW4XSR34UIOSRIVPI
         aws-secret-access-key: 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
-        aws-region: us-east-1
+        aws-region: ap-south-1
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
@@ -50,3 +50,4 @@ jobs:
        key: ${{ secrets.PRIVATE_SSH_KEY }}
        run:
          sudo docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         sudo docker run $IMAGE_TAG
